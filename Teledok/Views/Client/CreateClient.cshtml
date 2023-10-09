@@ -1,0 +1,66 @@
+﻿@using Teledok.Models.Enums
+
+@model ClientViewModel
+
+<div>
+    <h4>Создание клиента</h4>
+</div>
+
+<form method="post" asp-action="CreateClient">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="CreateClient">
+                <div asp-validation-for="Db" class="text-danger"></div>
+   
+                <input type="hidden" id="CreationDate" asp-for="CreationDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                <input type="hidden" id="LastEditDate" asp-for="LastEditDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+   
+                <div class="form-group">
+                    <label asp-for="INN" class="control-label">ИНН</label>
+                    <input asp-for="INN" class="form-control" id="INN"/>
+                    <span asp-validation-for="INN" class="text-danger"></span>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Наименование</label>
+                    <input asp-for="Name" class="form-control" id="Name"/>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label asp-for="ClientType" class="control-label">Тип</label>
+                    <select id="ClientType" class="form-select" asp-for="ClientType" asp-items="Html.GetEnumSelectList<ClientTypes>()"></select>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label asp-for="Founders" class="control-label">Учредитель</label>
+                    <select id="Founder" name="Founders" asp-for="Founders" class="form-select dependent-select" multiple asp-items="(List<SelectListItem>)ViewBag.Founders"></select>
+                    <span asp-validation-for="Founders" class="text-danger"></span>
+                </div>
+                <br/>
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </form>
+        </div>
+    </div>
+</form>
+
+@section scripts {
+    <script>
+        $(document).ready(function() {
+            $('#ClientType').change(function() {
+                var selectedValue = $(this).val();
+                console.log(selectedValue);
+                if (selectedValue == 0) {
+                    $('.dependent-select').attr('multiple', true);
+                } else {
+                    $('.dependent-select').removeAttr('multiple');
+                }
+            });
+            $('#ClientType').trigger('change');
+        });
+    </script>
+    
+}
+
+
+
