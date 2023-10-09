@@ -52,7 +52,7 @@ public class ClientValidation
         {
             if (_client.INN.Length != 12)
             {
-                errorList.Add(("INN","Длина ИНН у ИП должна быть 10 цифр"));
+                errorList.Add(("INN","Длина ИНН у ИП должна быть 12 цифр"));
             }
         }
     }
