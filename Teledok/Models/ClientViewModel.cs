@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc;
-using Teledok.Models.Enums;
 
 namespace Teledok.Models;
 

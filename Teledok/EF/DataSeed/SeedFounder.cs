@@ -1,5 +1,4 @@
 ﻿using Teledok.Models;
-using Teledok.EF;
 
 namespace Teledok.EF.DataSeed;
 
